@@ -1,13 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:easefx_ai/features/editor/data/repositories/ai_ease_repository.dart';
 import 'editor_event.dart';
 import 'editor_state.dart';
 
 class EditorBloc extends Bloc<EditorEvent, EditorState> {
-  final AiEaseRepository _repository;
 
-  EditorBloc({AiEaseRepository? repository})
-      : _repository = repository ?? AiEaseRepository(),
+  EditorBloc():
         super(EditorInitial()) {
     on<GenerateClothChangeEvent>(_onGenerate);
     on<ResetEditorEvent>(_onReset);
@@ -25,12 +22,12 @@ class EditorBloc extends Bloc<EditorEvent, EditorState> {
       // 2. Upload binary
       // 3. Trigger AI generation
       // 4. Poll until result ready
-      final resultUrl = await _repository.generateClothChange(
-        event.imageFile,
-        event.styleId,
-      );
-
-      emit(EditorLoaded(resultImageUrl: resultUrl));
+      // final resultUrl = await _repository.generateClothChange(
+      //   event.imageFile,
+      //   event.styleId,
+      // );
+      //
+      // emit(EditorLoaded(resultImageUrl: resultUrl));
     } catch (e) {
       emit(EditorError(message: e.toString()));
     }

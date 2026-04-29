@@ -4,7 +4,6 @@ import '../../../../core/widgets/feature_detail_layout.dart';
 import '../../../../core/widgets/image_style_selector.dart';
 import '../../data/models/mock_hair_swap.dart';
 import '../../data/models/hair_swap_model.dart';
-import '../../../../features/editor/data/repositories/ai_ease_repository.dart';
 
 class HairSwapPage extends StatefulWidget {
   const HairSwapPage({Key? key}) : super(key: key);
@@ -16,7 +15,6 @@ class HairSwapPage extends StatefulWidget {
 class _HairSwapPageState extends State<HairSwapPage> {
   late List<HairSwapModel> _styles;
   HairSwapModel? _selectedStyle;
-  final _repo = AiEaseRepository();
 
   @override
   void initState() {
@@ -47,7 +45,7 @@ class _HairSwapPageState extends State<HairSwapPage> {
               },
             ),
       onGenerate: (image) async {
-        final resultUrl = await _repo.generateHairSwap(image, _selectedStyle!.id.toString());
+        final resultUrl = '';
         if (mounted) {
           context.push('/result', extra: {
             'feature': 'HairSwap',

@@ -1,16 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easefx_ai/features/headshot_generator/domain/usecases/get_headshot_styles.dart';
-import 'package:easefx_ai/features/editor/data/repositories/ai_ease_repository.dart';
-
 import 'headshot_generator_event.dart';
 import 'headshot_generator_state.dart';
 
 class HeadshotGeneratorBloc extends Bloc<HeadshotGeneratorEvent, HeadshotGeneratorState> {
   final GetHeadshotStyles getHeadshotStyles;
-  final AiEaseRepository _aiEaseRepository;
 
-  HeadshotGeneratorBloc(this.getHeadshotStyles)
-      : _aiEaseRepository = AiEaseRepository(),
+  HeadshotGeneratorBloc(this.getHeadshotStyles):
+
         super(const HeadshotGeneratorState()) {
     on<FetchStylesEvent>(_onFetchStyles);
     on<SelectGenderEvent>(_onSelectGender);
@@ -52,10 +49,7 @@ class HeadshotGeneratorBloc extends Bloc<HeadshotGeneratorEvent, HeadshotGenerat
     emit(state.copyWith(status: HeadshotGeneratorStatus.generating));
 
     try {
-      final resultUrl = await _aiEaseRepository.generateHeadshot(
-        event.imageFile,
-        state.selectedStyleId!.toString(),
-      );
+      final resultUrl = '';
       emit(state.copyWith(
         status: HeadshotGeneratorStatus.success,
         resultUrl: resultUrl,

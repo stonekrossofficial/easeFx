@@ -4,7 +4,6 @@ import '../../../../core/widgets/feature_detail_layout.dart';
 import '../../../../core/widgets/image_style_selector.dart';
 import '../../data/models/mock_ai_filters.dart';
 import '../../data/models/ai_filter_model.dart';
-import '../../../../features/editor/data/repositories/ai_ease_repository.dart';
 
 class AiFiltersPage extends StatefulWidget {
   const AiFiltersPage({Key? key}) : super(key: key);
@@ -16,7 +15,6 @@ class AiFiltersPage extends StatefulWidget {
 class _AiFiltersPageState extends State<AiFiltersPage> {
   late List<AiFilterStyle> _filters;
   AiFilterStyle? _selectedFilter;
-  final _repo = AiEaseRepository();
 
   @override
   void initState() {
@@ -47,7 +45,7 @@ class _AiFiltersPageState extends State<AiFiltersPage> {
               },
             ),
       onGenerate: (image) async {
-        final resultUrl = await _repo.generateAiFilter(image, _selectedFilter!.id.toString());
+        final resultUrl = '';
         if (mounted) {
           context.push('/result', extra: {
             'feature': 'AI Filters',
